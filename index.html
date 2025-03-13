@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Holi Animation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #0d0d0d;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            position: relative;
+            text-align: center;
+            font-size: 60px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 5px 5px 20px rgba(255, 255, 255, 0.8);
+            animation: textGlow 2s infinite alternate;
+        }
+        .subtext {
+            font-size: 30px;
+            font-weight: bold;
+            color: white;
+            margin-top: 20px;
+            text-shadow: 5px 5px 15px rgba(255, 255, 255, 0.8);
+            animation: subTextGlow 2s infinite alternate;
+        }
+        @keyframes textGlow {
+            0% { color: #FF5733; text-shadow: 0 0 20px #FF5733; }
+            25% { color: #FFC300; text-shadow: 0 0 20px #FFC300; }
+            50% { color: #DAF7A6; text-shadow: 0 0 20px #DAF7A6; }
+            75% { color: #FF33FF; text-shadow: 0 0 20px #FF33FF; }
+            100% { color: #33CFFF; text-shadow: 0 0 20px #33CFFF; }
+        }
+        @keyframes subTextGlow {
+            0% { color: #33CFFF; text-shadow: 0 0 15px #33CFFF; }
+            25% { color: #FF33FF; text-shadow: 0 0 15px #FF33FF; }
+            50% { color: #DAF7A6; text-shadow: 0 0 15px #DAF7A6; }
+            75% { color: #FFC300; text-shadow: 0 0 15px #FFC300; }
+            100% { color: #FF5733; text-shadow: 0 0 15px #FF5733; }
+        }
+        .color-splash {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: splash 3s linear infinite;
+        }
+        @keyframes splash {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+        .falling-splash {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            opacity: 0.9;
+            animation: fall 4s linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="holiText">Happy Holi!</div>
+    <div class="subtext">Wishing by Engineer Priyanshu</div>
+    <script>
+        function createSplash() {
+            const colors = ["#FF5733", "#FFC300", "#DAF7A6", "#FF33FF", "#33FF57", "#33CFFF"];
+            const splash = document.createElement("div");
+            splash.classList.add("color-splash");
+            splash.style.background = colors[Math.floor(Math.random() * colors.length)];
+            
+            splash.style.left = Math.random() * window.innerWidth + "px";
+            splash.style.top = Math.random() * window.innerHeight + "px";
+            document.body.appendChild(splash);
+            
+            setTimeout(() => {
+                splash.remove();
+            }, 3000);
+        }
+        
+        function createFallingSplash() {
+            const colors = ["#FF5733", "#FFC300", "#DAF7A6", "#FF33FF", "#33FF57", "#33CFFF"];
+            const splash = document.createElement("div");
+            splash.classList.add("falling-splash");
+            splash.style.background = colors[Math.floor(Math.random() * colors.length)];
+            
+            splash.style.left = Math.random() * window.innerWidth + "px";
+            splash.style.top = "-50px";
+            document.body.appendChild(splash);
+            
+            setTimeout(() => {
+                splash.remove();
+            }, 4000);
+        }
+        
+        setInterval(createSplash, 500);
+        setInterval(createFallingSplash, 300);
+    </script>
+</body>
+</html>
